@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Build Image') {
         steps {
-            withCredentials([usernamePassword(credentialsId: '86f466ab-0366-4461-8d22-cc40fb1d489b', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-cred', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                 script {
                     sh 'docker build -t kimheang68/jenkins-spring-build .'
                     sh "echo \$PASS | docker login -u \$USER --password-stdin"
