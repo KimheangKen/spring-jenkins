@@ -28,10 +28,10 @@ pipeline {
             }
         }
     }
-    stage('Deploy') {
-      steps {
-        sh 'docker run -d -p 8888:8080 kimheang68/jenkins-spring-build'
-      }
-    }
+    // stage('Deploy') {
+    //   steps {
+    //     sh 'docker run -d -p 8888:8080 kimheang68/jenkins-spring-build'
+    //   }
+    // }
   }
 }
