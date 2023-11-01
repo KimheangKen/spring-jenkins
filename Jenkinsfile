@@ -170,20 +170,20 @@ pipeline {
                 }
             }
         }
-        // stage('Trigger ManifestUpdate') {
-        //     steps {
-        //         script {
-        //             try {
-        //                 build job: 'change-spring-image-tag', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-        //                 // sendTelegramMessage("✅ Trigger ManifestUpdate stage succeeded\nVersion: ${BUILD_INFO}\nCommitter: ${COMMITTER}\nBranch: ${BRANCH}")
-        //             } catch (Exception e) {
-        //                 currentBuild.result = 'FAILURE'
-        //                 sendTelegramMessage("❌ Trigger ManifestUpdate stage failed: ${e.message}\nVersion: ${BUILD_INFO}\nCommitter: ${COMMITTER}\nBranch: ${BRANCH}")
-        //                 error("Trigger ManifestUpdate stage failed: ${e.message}")
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Trigger ManifestUpdate') {
+            steps {
+                script {
+                    try {
+                        build job: 'change-spring-image-tag', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+                        // sendTelegramMessage("✅ Trigger ManifestUpdate stage succeeded\nVersion: ${BUILD_INFO}\nCommitter: ${COMMITTER}\nBranch: ${BRANCH}")
+                    } catch (Exception e) {
+                        currentBuild.result = 'FAILURE'
+                        sendTelegramMessage("❌ Trigger ManifestUpdate stage failed: ${e.message}\nVersion: ${BUILD_INFO}\nCommitter: ${COMMITTER}\nBranch: ${BRANCH}")
+                        error("Trigger ManifestUpdate stage failed: ${e.message}")
+                    }
+                }
+            }
+        }
     }
 
     post {
