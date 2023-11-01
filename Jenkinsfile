@@ -68,32 +68,42 @@ pipeline {
             }
         }
         stage('Code Quality Check via SonarQube') {
-          steps {
-            script {
-                def scannerHome = tool 'sonarqube-scanner'
-                withSonarQubeEnv("sonarqube-server") {
-                    // Define environment variables securely
-                    def scannerCommand = """
-                    ${scannerHome}/bin/sonar-scanner -X \
-                    -Dsonar.projectKey=spring-project \
-                    -Dsonar.sources=src/main \
-                    -Dsonar.java.binaries=target/classes \
-                    -Dsonar.host.url=http://34.143.129.86:9000 \
-                    -Dsonar.login=${env.SONARQUBE_TOKEN}
-                    """
-                    def codeQualityLogs = sh script: scannerCommand, returnStatus: true
+            steps {
+                script {
+                    def scannerHome = tool 'sonarqube-scanner'
+                    withSonarQubeEnv("sonarqube-server") {
+                        def scannerCommand = """
+                        ${scannerHome}/bin/sonar-scanner -X \
+                        -Dsonar.projectKey=spring-project \
+                        -Dsonar.sources=src/main \
+                        -Dsonar.java.binaries=target/classes \
+                        -Dsonar.host.url=http://34.143.129.86:9000 \
+                        -Dsonar.login=${env.SONARQUBE_TOKEN}
+                        """
+                        def codeQualityLogs = sh script: scannerCommand, returnStatus: true
 
-                    if (codeQualityLogs != 0) {
-                        sendTelegramMessage("❌ Code Quality Check via SonarQube failed")
-                        currentBuild.result = 'FAILURE'
-                        error("Code Quality Check via SonarQube failed")
-                    } else {
-                        echo "✅ Code Quality Check via SonarQube succeeded"
+                        if (codeQualityLogs != 0) {
+                            sendTelegramMessage("❌ Code Quality Check via SonarQube failed")
+                            currentBuild.result = 'FAILURE'
+                            error("Code Quality Check via SonarQube failed")
+                        } else {
+                            echo "✅ Code Quality Check via SonarQube succeeded"
+                            
+                            // You can add additional checks here
+                            def qualityGateStatus = sh script: "${scannerHome}/bin/sonar-scanner -X -Dsonar.qualitygate.wait=true -Dsonar.login=${env.SONARQUBE_TOKEN}", returnStatus: true
+                            if (qualityGateStatus != 0) {
+                                sendTelegramMessage("❌ Quality Gate check failed. The build does not meet quality standards.")
+                                currentBuild.result = 'FAILURE'
+                                error("Quality Gate check failed")
+                            } else {
+                                echo "✅ Quality Gate passed. The build meets quality standards."
+                            }
+                        }
                     }
                 }
             }
-          }
         }
+
 
 
 
