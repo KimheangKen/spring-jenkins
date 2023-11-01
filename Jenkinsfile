@@ -74,7 +74,7 @@ pipeline {
                 withSonarQubeEnv("sonarqube-server") {
                     // Define environment variables securely
                     def scannerCommand = """
-                    ${scannerHome}/bin/sonar-scanner \
+                    ${scannerHome}/bin/sonar-scanner -X \
                     -Dsonar.projectKey=spring-project \
                     -Dsonar.sources=src/main \
                     -Dsonar.java.binaries=target/classes \
