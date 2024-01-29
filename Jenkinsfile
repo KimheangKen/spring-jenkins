@@ -32,6 +32,7 @@ pipeline {
                 script {
                     try {
                         // Use Maven for build
+                        // Use Maven for build
                         sh 'mvn clean install'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
