@@ -3,7 +3,7 @@ pipeline {
     tools {
 
         maven 'maven'
-        jdk 'jdk'
+        
     }
     environment {
         DOCKER_REGISTRY = 'kimheang68'
