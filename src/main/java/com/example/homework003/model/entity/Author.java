@@ -1,6 +1,6 @@
 package com.example.homework003.model.entity;
 
-import jakarta.validation.constraints.Min;
+//import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

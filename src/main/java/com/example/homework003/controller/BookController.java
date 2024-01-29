@@ -5,7 +5,7 @@ import com.example.homework003.model.request.BookRequest;
 import com.example.homework003.model.response.CustomResponse;
 import com.example.homework003.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,7 +67,7 @@ public class BookController {
 
     @PostMapping
     @Operation(summary = "Add new book")
-    public ResponseEntity<CustomResponse<Book>> addNewBook(@Valid @RequestBody BookRequest bookRequest){
+    public ResponseEntity<CustomResponse<Book>> addNewBook(@RequestBody BookRequest bookRequest){
         CustomResponse<Book> response;
         Integer storeBookId = bookService.saveBook(bookRequest);
         if(storeBookId != null){

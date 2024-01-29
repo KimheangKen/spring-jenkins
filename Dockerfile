@@ -1,5 +1,5 @@
 # Fetching latest version of Java
-FROM openjdk:19-alpine
+FROM openjdk:22-ea-17-jdk-slim
 
 # Setting up work directory
 WORKDIR /app
