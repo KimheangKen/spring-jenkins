@@ -6,7 +6,7 @@ pipeline {
         
     }
     environment {
-        DOCKER_REGISTRY = 'kimheang68'
+        DOCKER_REGISTRY = 'chhinghor'
         IMAGE_NAME = 'demo-api'
         CONTAINER_NAME = 'demo-api-container'
         TELEGRAM_BOT_TOKEN = credentials('telegram-token')
