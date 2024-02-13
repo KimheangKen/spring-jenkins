@@ -55,7 +55,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete category by id")
+    @Operation(summary = "Delete category by id hahahaha hehehehe")
     public ResponseEntity<CustomResponse<String>> deleteCategoryById(@PathVariable("id") Integer categoryId){
         CustomResponse<String> response;
         if(categoryService.deleteCategoryById(categoryId)){
