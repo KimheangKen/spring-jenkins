@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/categoriesHeheHe")
+@RequestMapping("/api/v1/categories")
 public class CategoryController {
     private final CategoryService categoryService;
 
@@ -26,7 +26,7 @@ public class CategoryController {
     }
 
     @GetMapping()
-    @Operation(summary = "Get all category by id")
+    @Operation(summary = "Get all category by id heheheheh")
     public ResponseEntity<CustomResponse<List<Category>>> getAllCategory(){
         CustomResponse<List<Category>> response = CustomResponse.<List<Category>>builder()
                 .message("Get all category successfully")
