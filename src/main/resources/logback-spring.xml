@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Include Spring Boot's base logging configuration -->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!-- Define a custom appender for Logstash -->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>34.126.147.135:6000</destination>
+        <!-- Encoder to format logs in JSON -->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!-- Customize the JSON output -->
+            <customFields>{"app": "demo-spring"}</customFields>
+        </encoder>
+    </appender>
+
+    <!-- Configure root logger -->
+    <root level="INFO">
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+
+</configuration>
