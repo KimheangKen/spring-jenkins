@@ -10,7 +10,7 @@
         <!-- Encoder to format logs in JSON -->
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <!-- Customize the JSON output -->
-            <customFields>{"app": "demo-spring"}</customFields>
+            <customFields>{"app": "spring-local"}</customFields>
         </encoder>
     </appender>
 

@@ -62,7 +62,7 @@ public class AuthorController {
         MDC.put("field", field);
 
         // Log the request details
-//        log.info("Request received: IP={}, Route={}, Field={}", ipAddress, route, field);
+        log.info("Request received: IP={}, Route={}, Field={}", ipAddress, route, field);
 
         CustomResponse<Author> response;
         Author author = authorService.getAuthorById(authorId);
