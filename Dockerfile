@@ -1,5 +1,5 @@
 # Fetching latest version of Java
-FROM openjdk:19-alpine
+FROM openjdk:23-ea-18-jdk-oraclelinux8
 
 # Setting up work directory
 WORKDIR /app
